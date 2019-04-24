@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
@@ -10,7 +11,10 @@
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-immutable-state-invariant": "^2.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.2",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start:dev": "react-scripts start & node api/mockServer.js",

@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import * as authorApi from "../../api/authorApi";
 
-function loadAuthorSuccess(authors) {
+export function loadAuthorSuccess(authors) {
     return { type: types.LOAD_AUTHORS_SUCCESS, authors};
 }
 

@@ -5,7 +5,7 @@ import App from "./components/App";
 
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router} from "react-router-dom"
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 const store = configureStore();
 
@@ -15,10 +15,10 @@ function Hi() {
 }
 
 render(
-<ReduxProvider store={store}>    
+<Provider store={store}>    
 <Router>
     <App/> 
 </Router>
-</ReduxProvider>,
+</Provider>,
 document.getElementById("app")
 );

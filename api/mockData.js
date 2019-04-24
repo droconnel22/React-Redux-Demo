@@ -29,11 +29,45 @@ const courses = [
     },
 ];
 
+const books = [
+    {
+        id: 1,
+        title:"Moby Dick",       
+        authorId:5,
+        category:"fiction"
+    },
+    {
+        id: 2,
+        title:"The Republic",
+        slug: "react-big-picture",
+        authorId:4,
+        category:"non-fiction"
+    },
+    {
+        id: 3,
+        title:"The Odyessy",
+        slug: "dont-stare-at-the",
+        authorId:6,
+        category:"fiction"
+    },
+    {
+        id: 4,
+        title:"Resturant At the End Of the Universe",
+        slug: "please-eat-the-cow",
+        authorId:7,
+        category:"non-sense"
+    },
+];
+
 
 const authors = [
     {id:1, name:"Cory House"},
     {id:2, name:"Scot Allen"},
-    {id:3, name:"Dan Wahlin"}
+    {id:3, name:"Dan Wahlin"},
+    {id:4, name:"Plato"},
+    {id:5, name:"Charles Dickens"},
+    {id:6, name:"Homer"},
+    {id:7, name:"Dougals Adams"},
 ];
 
 const newCourse = {
@@ -46,5 +80,6 @@ const newCourse = {
 module.exports = {
     newCourse,
     courses,
-    authors
+    authors,
+    books
 };

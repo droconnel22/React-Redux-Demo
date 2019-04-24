@@ -1,13 +1,36 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './reducers/index';
+import createSagaMiddleware from "redux-saga";
+import { createLogger } from 'redux-logger';
+import { Iterable } from 'immutable'
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import thunk from "redux-thunk";
+import { initSagas } from "./initSaga";
+import rootReducer from './reducers/index';
 
 export default function configureStore(initialState) {
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    return createStore(
+
+    const sagaMiddleware = createSagaMiddleware();
+
+    const stateTransformer = (state) => {
+        if (Iterable.isIterable(state)) return state.toJS();
+        else return state;
+    };
+
+    const logger = createLogger({
+        stateTransformer,
+    });
+    const middleWares = [sagaMiddleware, thunk,reduxImmutableStateInvariant(), logger];
+    const composables = [applyMiddleware(...middleWares)]
+    const enhancer = compose(
+        ...composables
+    );
+
+        const store = createStore(
         rootReducer, 
         initialState, 
-        composeEnhancers(applyMiddleware(thunk, reduxImmutableStateInvariant()))
+        enhancer
     );
+    initSagas(sagaMiddleware);
+    return store;
+    
 }
