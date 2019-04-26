@@ -21,11 +21,12 @@ server.use(function(req, res, next) {
 });
 
 server.post("/courses/", function(req, res, next) {
-    const error = validateCourse(req.body);
+    let course = req.body;
+    const error = validateCourse(course);
     if(error){
         res.status(400).send(error);
     } else {
-        req.body.slug = createSlug(req.body.title);
+        course.slug = createSlug(course.title);
         next();
     }
 });
@@ -49,5 +50,5 @@ function validateCourse(course) {
     if(!course.title) return "Title is required";
     if(!course.authorId) return "Author is required";
     if(!course.category) return "Category is requried";
-    return "";
+    return null;
 }

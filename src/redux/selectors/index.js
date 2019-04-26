@@ -1,2 +1,3 @@
-export { bookSelector } from "./bookSelector";
-export { authorSelector } from "./authorSelector"
+export * from "./bookSelector";
+export * from "./authorSelector"
+export * from "./courseSelector";

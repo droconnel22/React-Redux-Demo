@@ -1,5 +1,6 @@
-import { take, put }  from "redux-saga/effects";
+import { take, put, takeLatest }  from "redux-saga/effects";
 import  { 
+
     getBooks, 
     saveBook, 
     deleteBook
@@ -10,13 +11,14 @@ import {
     getBooksSuccess,   
 } from "../actions";
 
-
-export function* loadBooks() {  
-    yield take(GET_BOOKS);
+ function* loadBooks() {    
     console.log("######### loading Books")
     const response = yield getBooks();
-    console.log(response);    
-    console.log("books data:", response);
+    console.log(response);   
     yield put(getBooksSuccess(response));
 }
 
+// watcher saga
+export function* loadBooksSaga() {
+    yield takeLatest(GET_BOOKS, loadBooks);
+}

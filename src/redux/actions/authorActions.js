@@ -1,19 +1,13 @@
-import * as types from "./actionTypes";
-import * as authorApi from "../../api/authorApi";
+import { makeActionCreator } from '../utility';
 
-export function loadAuthorSuccess(authors) {
-    return { type: types.LOAD_AUTHORS_SUCCESS, authors};
-}
+export const GET_AUTHORS = "GET_AUTHORS";
 
-export function loadAuthors() {
-    return function(dispatch) {
-        return authorApi
-        .getAuthors()
-        .then(authors => {
-            dispatch(loadAuthorSuccess(authors));
-        })
-        .catch(error => {
-            throw error;
-        })
-    }
-}
+export const GET_AUTHORS_SUCCESS ='GET_AUTHORS_SUCCESS';
+
+export const GET_AUTHORS_FAILURE = 'GET_AUTHORS_FAILURE';
+
+export const getAuthors = makeActionCreator(GET_AUTHORS);
+
+export const getAuthorsSuccess = makeActionCreator(GET_AUTHORS_SUCCESS,"authors");
+
+export const getAuthorsFailure = makeActionCreator(GET_AUTHORS_FAILURE, "error");

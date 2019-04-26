@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
 
@@ -7,7 +7,7 @@ import BookList from "./BookList";
 
 import {
     getBooks ,
-    loadAuthors   
+    getAuthors   
 } from '../../redux/actions'
 
 import {
@@ -16,13 +16,14 @@ import {
 } from "../../redux/selectors";
 
  
-const BookPage = ({books, getBooks, loadAuthors}) =>{
-
+const BookPage = ({books, getBooks, getAuthors}) =>{
+    console.log("use effect.....");   
     useEffect(() => {
+        getAuthors();
+        getBooks();
         // Update the document title using the browser API
-        loadAuthors();
-        getBooks()          
-      });
+          console.log("use effect.....");
+      }, []);
 
     return (
         <BookList books={books}></BookList>       
@@ -59,7 +60,7 @@ const mapStateToProps =  (state) => {
 
 const mapDispatchToProps = {
     getBooks,
-    loadAuthors
+    getAuthors
 };
 
 

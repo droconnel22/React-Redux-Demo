@@ -10,6 +10,7 @@ export function getCourses(){
 }
 
 export function saveCourse(course) {
+
     return fetch ( baseUrl + (course.id || ""),
     {
         method: course.id ? "PUT" : "POST",
@@ -19,7 +20,7 @@ export function saveCourse(course) {
         body: JSON.stringify(course)
     })    
         .then(handleResponse)
-        .then(handleError);
+        .catch(handleError);
 };
 
 export function deleteCourse(courseId) {

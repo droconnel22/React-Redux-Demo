@@ -9,7 +9,7 @@ import {
 export default function bookReducer(state=defaultState.books, {type, books}){
     switch(type){
         case GET_BOOKS_SUCCESS:
-            return [...state, ...books];
+            return books;
         case GET_BOOKS_FAILURE:
             return state.books;       
         default:
